@@ -1,8 +1,9 @@
-const values = [12, 19, 3, 5, 2, 3];
+let values = [12, 19, 3, 5, 2, 3];
+const dataLabels = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
 config = {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: dataLabels,
         datasets: [{
             label: '#',
             data: values,
@@ -57,10 +58,11 @@ window.addEventListener('load', () => {
 
     form.addEventListener('keyup', (e)=> {    
         try {
-           const labelIndx = labels.findIndex((label => label.toLowerCase() == e.target.name));
-           const newValue =  Number(e.target.value);
+           let labelIndx = labels.findIndex((label => label.toLowerCase() == e.target.name));
+           let newValue =  Number(e.target.value);
            if(!isNaN(newValue)) {
                 dataset.data.splice(labelIndx, 1, newValue);
+                values = dataset.data;
                 myChart.update();
            }
         } catch(e) {
@@ -77,6 +79,19 @@ window.addEventListener('load', () => {
         });
         myChart.update();
     });
+
+    const selectOption = document.getElementById('select');
+    selectOption.addEventListener('change', (e) => {
+        console.log(selectOption.value)
+        dataset.data = values.slice(0, selectOption.value);
+        myChart.data.labels = dataLabels.slice(0, selectOption.value)
+        myChart.update();
+        if(selectOption.value == '4') {
+            document.body.classList.add('four');
+        } else {
+            document.body.classList.remove('four');
+        }
+    })
 
 });
  
