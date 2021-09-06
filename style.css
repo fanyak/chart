@@ -1,23 +1,26 @@
             
 .chart-holder {
     width: 500px; 
-    max-width: 100vw;
+    max-width: 98vw;
     height: 500px; 
+    max-height: 70vh;
     overflow: hidden;
 }
 .flexbox {
-   padding: 20px 0;
-   max-width: 800px;
+   padding: 20px 20px 20px 0;
+   max-width: 500px;
 }
 .flexbox form {
     display:flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 .flexbox label {
     flex: 1;
 }
 .flexbox input {
-    width: 50px;
+    width: 40px;
+    display: block;
 }
 .button-holder {
     margin-top: 20px;
@@ -40,6 +43,10 @@ select {
     cursor:pointer;
     font-weight: bold;
     padding: 10px;
+}
+textarea {
+    margin-left: 20px;
+    padding: 8px 5px 0;
 }
 body.four .purple, body.four .orange {
     display: none;

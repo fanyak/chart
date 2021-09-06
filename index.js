@@ -36,7 +36,7 @@ config = {
             legend: {
               display: false
             }
-        }      
+        }    
     }
 };
 
@@ -48,6 +48,7 @@ function buildChart(){
 
 window.addEventListener('load', () => {
     const myChart = buildChart();
+    appendClickCallback(myChart);
 
     // change values
     const form = document.forms['boxes'];
@@ -62,7 +63,7 @@ window.addEventListener('load', () => {
            let newValue =  Number(e.target.value);
            if(!isNaN(newValue)) {
                 dataset.data.splice(labelIndx, 1, newValue);
-                values = dataset.data;
+                values = [...dataset.data];
                 myChart.update();
            }
         } catch(e) {
@@ -70,22 +71,31 @@ window.addEventListener('load', () => {
         }        
     });
 
+    // toggle a line
     const lineButton = document.getElementById('line');
     lineButton.addEventListener('click', () => {
-        myChart.data.datasets.push( {
-            type: 'line',
-            label: 'Line Dataset',
-            data: [10, 20, 25, 15],
-        });
+        if(myChart.data.datasets.length == 1) {
+            myChart.data.datasets.push( {
+                type: 'line',
+                label: 'Line Dataset',
+                data: [10, 20, 25, 15],
+            });
+            lineButton.innerText = 'Remove Line';
+        } else {
+            myChart.data.datasets.pop();
+            lineButton.innerText = 'Add Line'
+        }
         myChart.update();
     });
 
+    // add or remove values
     const selectOption = document.getElementById('select');
     selectOption.addEventListener('change', (e) => {
         console.log(selectOption.value)
         dataset.data = values.slice(0, selectOption.value);
         myChart.data.labels = dataLabels.slice(0, selectOption.value)
         myChart.update();
+        // UI hide also the inputs 
         if(selectOption.value == '4') {
             document.body.classList.add('four');
         } else {
@@ -94,4 +104,20 @@ window.addEventListener('load', () => {
     })
 
 });
+
+function appendClickCallback(myChart) {
+    const clb =   (evt) => {
+        const points = myChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
+    
+        if (points.length) {
+            const firstPoint = points[0];
+            var label = myChart.data.labels[firstPoint.index];
+            var value = myChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
+            console.log(label, value)
+            document.querySelector('textarea').innerHTML = `${label}: ${value}`;
+        }
+    }
+    myChart.options.onClick = clb;
+    myChart.update();
+}
  
