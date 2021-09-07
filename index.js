@@ -115,6 +115,9 @@ function appendClickCallback(myChart) {
             var value = myChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
             console.log(label, value)
             document.querySelector('textarea').innerHTML = `${label}: ${value}`;
+            if(label.toLowerCase() === 'purple') {
+                window.location.href='months/index.html'
+            }
         }
     }
     myChart.options.onClick = clb;
