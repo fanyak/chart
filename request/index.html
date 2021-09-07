@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> chart by request</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="../style.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+    </head>
+    <body>
+        <div class="chart-holder">
+            <canvas id="chart" width="300" height="300"></canvas>
+        </div>
+        <select id="chartDisplayOptions">
+            <option value="0" selected>show 12 months</option>
+            <option value="6">show last 6 months of the year</option>
+            <option value="3">show last 3 months of the year</option>
+        </select>
+        <script defer src="index.js"></script>
+    </body>
+</html>
