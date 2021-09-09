@@ -1,11 +1,21 @@
             
 .chart-holder {
-    width: 500px; 
+    position: relative;
+    width: 100%; 
     max-width: 98vw;
-    height: 500px; 
-    max-height: 70vh;
+    max-height: 80vh;
     overflow: hidden;
 }
+.page {
+    width: 70vw;
+    height: 95vh;
+}
+@media screen and (max-width:1340px) {
+    .page {
+        width: 98vw;
+    }
+}
+
 .flexbox {
    padding: 20px 20px 20px 0;
    max-width: 500px;
@@ -36,6 +46,7 @@ button#line {
     cursor: pointer;
 }
 select {
+    margin-top: 50px;
     margin-left: 20px;
     border-radius: 3px;
     border: solid 1px #ddd;
