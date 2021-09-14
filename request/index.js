@@ -17,6 +17,17 @@ config = {
                 'rgba(54, 162, 235, 1)',
             ],
             borderWidth: 1
+        },
+        {
+            label: '',
+            data: [30,31,32,33,28,35,32,30,29,33,29,28],
+            backgroundColor: [
+                'rgba(226, 106, 106, 1)',
+            ],
+            borderColor: [
+                'rgba(226, 106, 106, 1)',
+            ],
+            borderWidth: 1
         }]
     },
     options: {
